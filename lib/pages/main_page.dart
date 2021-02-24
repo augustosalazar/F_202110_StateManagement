@@ -1,3 +1,4 @@
+import 'package:F_202110_StateManagement/pages/bloc_test.dart';
 import 'package:F_202110_StateManagement/pages/provider_test.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return ProviderTest();
+    return BlocTest();
   }
 }
