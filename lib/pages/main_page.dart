@@ -10,8 +10,25 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _id = 0;
+
+  _onPress() {
+    setState(() {
+      _id = _id == 0 ? 1 : 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocTest();
+    return Column(
+      children: [
+        FlatButton(
+            onPressed: () {
+              _onPress();
+            },
+            child: Text("Change state manager")),
+        Expanded(child: _id == 0 ? ProviderTest() : BlocTest())
+      ],
+    );
   }
 }

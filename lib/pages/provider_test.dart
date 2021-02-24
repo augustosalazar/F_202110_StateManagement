@@ -48,7 +48,7 @@ class P1 extends StatelessWidget {
       child: FlatButton(
         color: Theme.of(context).accentColor,
         child: Text(
-          'Click me',
+          'Click me with Provider',
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
