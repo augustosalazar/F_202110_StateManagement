@@ -1,7 +1,11 @@
+import 'package:F_202110_StateManagement/model/simple_getx_controller.dart';
 import 'package:F_202110_StateManagement/pages/main_page.dart';
+import 'package:F_202110_StateManagement/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
+  Get.put(SimpleGetXController());
   runApp(MyApp());
 }
 
@@ -10,10 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        debugShowCheckedModeBanner: false,
+        theme: MyTheme.lightTheme,
         home: Scaffold(
           appBar: AppBar(
             title: Text("Flutter state"),

@@ -20,8 +20,12 @@ class OneRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [P1(), P2()],
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(flex: 1, child: P1()),
+        Expanded(flex: 1, child: P2())
+      ],
     );
   }
 }
@@ -31,10 +35,20 @@ class P2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SingleModel>(
-      builder: (context, model, child) {
-        return Text('${model.get_some_value}');
-      },
+    return Container(
+      margin: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).accentColor),
+      child: Consumer<SingleModel>(
+        builder: (context, model, child) {
+          return Center(
+            child: Text(
+              '${model.get_some_value}',
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -45,11 +59,13 @@ class P1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FlatButton(
-        color: Theme.of(context).accentColor,
+      margin: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).accentColor),
+      child: OutlinedButton(
         child: Text(
           'Click me with Provider',
-          style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
           Provider.of<SingleModel>(context, listen: false).setSomeValue();
