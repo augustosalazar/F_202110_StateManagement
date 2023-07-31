@@ -1,8 +1,9 @@
-import 'package:F_202110_StateManagement/model/simple_getx_controller.dart';
-import 'package:F_202110_StateManagement/pages/main_page.dart';
-import 'package:F_202110_StateManagement/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'model/simple_getx_controller.dart';
+import 'pages/main_page.dart';
+import 'theme/theme.dart';
 
 void main() {
   Get.put(SimpleGetXController());

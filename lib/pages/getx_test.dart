@@ -1,6 +1,7 @@
-import 'package:F_202110_StateManagement/model/simple_getx_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../model/simple_getx_controller.dart';
 
 class GetXTest extends StatelessWidget {
   @override
@@ -10,8 +11,6 @@ class GetXTest extends StatelessWidget {
 }
 
 class OneRow extends StatelessWidget {
-  const OneRow({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,15 +25,13 @@ class OneRow extends StatelessWidget {
 }
 
 class P2 extends StatelessWidget {
-  const P2({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).accentColor),
+          color: Theme.of(context).primaryColor),
       child: Center(child: GetX<SimpleGetXController>(builder: (controller) {
         return Text(
           '${controller.someValue}',
@@ -52,7 +49,7 @@ class P1 extends StatelessWidget {
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).accentColor),
+          color: Theme.of(context).primaryColor),
       child: OutlinedButton(
         child: Text(
           'Click me with GetX',

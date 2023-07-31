@@ -1,10 +1,9 @@
-import 'package:F_202110_StateManagement/model/simple_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProviderTest extends StatelessWidget {
-  const ProviderTest({Key key}) : super(key: key);
+import '../model/simple_model.dart';
 
+class ProviderTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SingleModel>(
@@ -15,8 +14,6 @@ class ProviderTest extends StatelessWidget {
 }
 
 class OneRow extends StatelessWidget {
-  const OneRow({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,15 +28,13 @@ class OneRow extends StatelessWidget {
 }
 
 class P2 extends StatelessWidget {
-  const P2({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).accentColor),
+          color: Theme.of(context).primaryColor),
       child: Consumer<SingleModel>(
         builder: (context, model, child) {
           return Center(
@@ -54,15 +49,13 @@ class P2 extends StatelessWidget {
 }
 
 class P1 extends StatelessWidget {
-  const P1({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).accentColor),
+          color: Theme.of(context).primaryColor),
       child: OutlinedButton(
         child: Text(
           'Click me with Provider',

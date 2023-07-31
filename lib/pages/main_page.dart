@@ -1,11 +1,10 @@
-import 'package:F_202110_StateManagement/pages/bloc_test.dart';
-import 'package:F_202110_StateManagement/pages/getx_test.dart';
-import 'package:F_202110_StateManagement/pages/provider_test.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatefulWidget {
-  MainPage({Key key}) : super(key: key);
+import 'bloc_test.dart';
+import 'getx_test.dart';
+import 'provider_test.dart';
 
+class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
 }
