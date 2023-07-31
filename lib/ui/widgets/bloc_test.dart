@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../model/simple_getx_controller.dart';
+import '../controllers/simple_bloc_state.dart';
 
-class GetXTest extends StatelessWidget {
+class BlocTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OneRow();
+    return BlocProvider(
+      create: (BuildContext context) => SimpleBlocState(),
+      child: OneRow(),
+    );
   }
 }
 
@@ -16,10 +19,7 @@ class OneRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(flex: 1, child: P1()),
-        Expanded(flex: 1, child: P2())
-      ],
+      children: [Expanded(child: P1()), Expanded(child: P2())],
     );
   }
 }
@@ -32,11 +32,9 @@ class P2 extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).primaryColor),
-      child: Center(child: GetX<SimpleGetXController>(builder: (controller) {
-        return Text(
-          '${controller.someValue}',
-        );
-      })),
+      child: BlocBuilder<SimpleBlocState, String>(
+        builder: (context, state) => Center(child: Text("$state")),
+      ),
     );
   }
 }
@@ -44,18 +42,16 @@ class P2 extends StatelessWidget {
 class P1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SimpleGetXController controller = Get.find();
+    final SimpleBlocState bloc = BlocProvider.of<SimpleBlocState>(context);
     return Container(
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).primaryColor),
       child: OutlinedButton(
-        child: Text(
-          'Click me with GetX',
-        ),
+        child: Text("Click me BLoC"),
         onPressed: () {
-          controller.setValue();
+          bloc.add(MyEvent.change);
         },
       ),
     );

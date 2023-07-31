@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'bloc_test.dart';
-import 'getx_test.dart';
-import 'provider_test.dart';
+import '../widgets/bloc_test.dart';
+import '../widgets/getx_test.dart';
+import '../widgets/provider_test.dart';
 
 class MainPage extends StatefulWidget {
   @override

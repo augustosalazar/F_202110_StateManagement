@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
-import '../model/simple_model.dart';
+import '../controllers/simple_getx_controller.dart';
 
-class ProviderTest extends StatelessWidget {
+class GetXTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SingleModel>(
-      create: (context) => SingleModel(),
-      child: OneRow(),
-    );
+    return OneRow();
   }
 }
 
@@ -35,15 +32,11 @@ class P2 extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).primaryColor),
-      child: Consumer<SingleModel>(
-        builder: (context, model, child) {
-          return Center(
-            child: Text(
-              '${model.get_some_value}',
-            ),
-          );
-        },
-      ),
+      child: Center(child: GetX<SimpleGetXController>(builder: (controller) {
+        return Text(
+          '${controller.someValue}',
+        );
+      })),
     );
   }
 }
@@ -51,6 +44,7 @@ class P2 extends StatelessWidget {
 class P1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SimpleGetXController controller = Get.find();
     return Container(
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
@@ -58,10 +52,10 @@ class P1 extends StatelessWidget {
           color: Theme.of(context).primaryColor),
       child: OutlinedButton(
         child: Text(
-          'Click me with Provider',
+          'Click me with GetX',
         ),
         onPressed: () {
-          Provider.of<SingleModel>(context, listen: false).setSomeValue();
+          controller.setValue();
         },
       ),
     );

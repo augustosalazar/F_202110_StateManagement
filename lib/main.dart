@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'model/simple_getx_controller.dart';
-import 'pages/main_page.dart';
-import 'theme/theme.dart';
+import 'ui/controllers/simple_getx_controller.dart';
+import 'ui/pages/main_page.dart';
+import 'ui/theme/theme.dart';
 
 void main() {
   Get.put(SimpleGetXController());

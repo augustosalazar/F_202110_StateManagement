@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
-import '../model/simple_bloc_state.dart';
+import '../controllers/simple_model.dart';
 
-class BlocTest extends StatelessWidget {
+class ProviderTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => SimpleBlocState(),
+    return ChangeNotifierProvider<SingleModel>(
+      create: (context) => SingleModel(),
       child: OneRow(),
     );
   }
@@ -19,7 +19,10 @@ class OneRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [Expanded(child: P1()), Expanded(child: P2())],
+      children: [
+        Expanded(flex: 1, child: P1()),
+        Expanded(flex: 1, child: P2())
+      ],
     );
   }
 }
@@ -32,8 +35,14 @@ class P2 extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).primaryColor),
-      child: BlocBuilder<SimpleBlocState, String>(
-        builder: (context, state) => Center(child: Text("$state")),
+      child: Consumer<SingleModel>(
+        builder: (context, model, child) {
+          return Center(
+            child: Text(
+              '${model.get_some_value}',
+            ),
+          );
+        },
       ),
     );
   }
@@ -42,16 +51,17 @@ class P2 extends StatelessWidget {
 class P1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final SimpleBlocState bloc = BlocProvider.of<SimpleBlocState>(context);
     return Container(
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).primaryColor),
       child: OutlinedButton(
-        child: Text("Click me BLoC"),
+        child: Text(
+          'Click me with Provider',
+        ),
         onPressed: () {
-          bloc.add(MyEvent.change);
+          Provider.of<SingleModel>(context, listen: false).setSomeValue();
         },
       ),
     );
